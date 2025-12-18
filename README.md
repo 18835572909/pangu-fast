@@ -80,6 +80,10 @@ canal.mq.partition=0
 - ```com.hz.voa.canal.support.mqtx.GlobalMqTransactionListener```
 - ```com.hz.voa.canal.support.mqtx.MqTransactionHandler```
 
+----
 
+## **提醒**
+
+code不易，参考、使用 请先star哦， 感激不尽！！！
 
 
