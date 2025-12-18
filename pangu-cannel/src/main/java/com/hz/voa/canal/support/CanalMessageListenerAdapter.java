@@ -1,7 +1,5 @@
 package com.hz.voa.canal.support;
 
-import cn.hutool.core.lang.TypeReference;
-import cn.hutool.json.JSONUtil;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 
