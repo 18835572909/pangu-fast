@@ -1,0 +1,75 @@
+一、基础网络和服务器配置
+    canal.ip - Canal Server 绑定的 IP
+    canal.register.ip - 注册到 ZooKeeper 的 IP
+    canal.port = 11111 - Canal Server 服务端口
+    canal.metrics.pull.port = 11112 - 监控指标拉取端口
+    canal.user/canal.passwd - Canal Server 自身的认证
+    canal.admin.port = 11110 - Canal Admin 管理端口
+    canal.admin.user/canal.admin.passwd - Admin 管理界面的认证
+二、存储和内存配置
+    canal.file.data.dir - 数据文件存储目录
+    canal.file.flush.period = 1000 - 刷盘周期（毫秒）
+    canal.instance.memory.buffer.size = 16384 - RingBuffer 大小（16K 条目）
+    canal.instance.memory.buffer.memunit = 1024 - 每个条目内存单元（1KB）
+    canal.instance.memory.batch.mode = MEMSIZE - 批处理模式（按内存大小）
+三、高可用和健康检测
+    canal.instance.detecting.enable = false - 是否开启心跳检测
+    canal.instance.detecting.sql = select 1 - 心跳检测 SQL
+    canal.instance.detecting.interval.time = 3 - 检测间隔（秒）
+    canal.instance.detecting.retry.threshold = 3 - 重试阈值
+    canal.zkServers - ZooKeeper 地址（用于集群）
+四、binlog 处理配置
+    canal.instance.transaction.size = 1024 - 单个事务最大行数
+    canal.instance.binlog.format = ROW,STATEMENT,MIXED - 支持的 binlog 格式
+    canal.instance.binlog.image = FULL,MINIMAL,NOBLOB - 支持的镜像类型
+    canal.instance.get.ddl.isolation = false - DDL 隔离
+    canal.instance.parser.parallel = true - 启用并行解析
+    canal.instance.parser.parallelBufferSize = 256 - 并行解析缓冲区大小
+五、过滤器配置
+    canal.instance.filter.druid.ddl = true - 使用 Druid 解析 DDL
+    canal.instance.filter.query.dcl = false - 是否过滤 DCL
+    canal.instance.filter.query.dml = false - 是否过滤 DML
+    canal.instance.filter.query.ddl = false - 是否过滤 DDL
+    canal.instance.filter.rows = false - 是否过滤行数据
+    各种 DML 过滤 - 控制是否过滤特定操作类型
+六、TSDB 配置
+    canal.instance.tsdb.enable = true - 启用 TSDB
+    canal.instance.tsdb.url = jdbc:h2:${canal.instance.tsdb.dir}/h2 - 使用 H2 数据库存储
+    canal.instance.tsdb.snapshot.interval = 24 - 快照间隔（小时）
+    canal.instance.tsdb.snapshot.expire = 360 - 快照过期时间（15天）
+七、多实例管理
+    canal.destinations - 实例列表（用逗号分隔）
+    canal.conf.dir = ../conf - 配置文件目录
+    canal.auto.scan = true - 自动扫描实例目录变化
+    canal.auto.scan.interval = 5 - 扫描间隔（秒）
+    canal.auto.reset.latest.pos.mode = false - 是否重置到最新位置（生产环境谨慎！）
+八、运行模式
+    canal.serverMode = tcp - 运行模式（tcp/kafka/rocketMQ/rabbitMQ）
+    canal.instance.global.mode = manager - 实例管理模式
+    canal.instance.global.spring.xml = classpath:spring/file-instance.xml - 使用文件存储实例
+九、消息队列通用配置
+    canal.mq.flatMessage = true - 扁平化消息格式
+    canal.mq.canalBatchSize = 50 - 批量大小
+    canal.mq.canalGetTimeout = 100 - 获取超时（毫秒）
+    canal.mq.database.hash = true - 按数据库 hash 分发
+    canal.mq.send.thread.size = 30 - 发送线程数
+    canal.mq.build.thread.size = 8 - 构建线程数
+十、Kafka 特定配置
+    kafka.bootstrap.servers = 127.0.0.1:6667 - Kafka 地址
+    kafka.acks = all - 确认机制（all 最安全）
+    kafka.compression.type = none - 压缩类型
+    kafka.batch.size = 16384 - 批量大小（16KB）
+    kafka.linger.ms = 1 - 延迟发送（毫秒）
+    kafka.retries = 0 - 重试次数
+    kafka.kerberos.enable = false - 是否启用 Kerberos 认证
+十一、RocketMQ 特定配置
+    rocketmq.producer.group = test - 生产者组
+    rocketmq.namesrv.addr = 127.0.0.1:9876 - NameServer 地址
+    rocketmq.retry.times.when.send.failed = 0 - 失败重试次数
+    rocketmq.tag - 消息标签
+十二、RabbitMQ 特定配置
+    rabbitmq.host - RabbitMQ 地址
+    rabbitmq.virtual.host - 虚拟主机
+    rabbitmq.exchange - 交换机
+    rabbitmq.username/password - 认证信息
+    rabbitmq.deliveryMode - 消息投递模式

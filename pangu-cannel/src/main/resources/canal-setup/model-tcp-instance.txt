@@ -1,0 +1,67 @@
+#################################################
+## mysql serverId , v1.0.26+ will autoGen
+# canal.instance.mysql.slaveId=0
+
+# enable gtid use true/false
+# 是否启用GTID（全局事务标识）模式。这里设置为false，表示不启用
+canal.instance.gtidon=false
+
+# position info
+canal.instance.master.address=120.27.156.17:3306
+# binlog文件名，如果为空则从当前最早或最新的binlog开始
+canal.instance.master.journal.name=
+# binlog位置，如果为0则从最新位置开始。
+canal.instance.master.position=
+# 从指定的时间戳开始，格式为yyyy-MM-dd HH:mm:ss。
+canal.instance.master.timestamp=
+# 从指定的GTID开始，需要启用GTID
+canal.instance.master.gtid=
+
+# rds oss binlog
+# 如果使用阿里云RDS的OSS binlog，需要配置accesskey、secretkey和instanceId。这里为空，表示不使用。
+canal.instance.rds.accesskey=
+canal.instance.rds.secretkey=
+canal.instance.rds.instanceId=
+
+# table meta tsdb info
+# 元数据管理： 表元数据TSDB，是否启用表结构快照存储，这里启用（true）。默认使用内嵌数据库，也可以配置外部数据库（URL、用户名、密码）来存储表结构历史。
+canal.instance.tsdb.enable=true
+#canal.instance.tsdb.url=jdbc:mysql://127.0.0.1:3306/canal_tsdb
+#canal.instance.tsdb.dbUsername=canal
+#canal.instance.tsdb.dbPassword=canal
+
+# 可以配置备用数据库，当主库不可用时切换。这里被注释掉，表示未配置。
+#canal.instance.standby.address =
+#canal.instance.standby.journal.name =
+#canal.instance.standby.position =
+#canal.instance.standby.timestamp =
+#canal.instance.standby.gtid=
+
+# username/password
+canal.instance.dbUsername=root
+canal.instance.dbPassword=nZHdc8WxdK3Y
+canal.instance.connectionCharset = UTF-8
+# enable druid Decrypt database password
+canal.instance.enableDruid=false
+#canal.instance.pwdPublicKey=MFwwDQYJKoZIhvcNAQEBBQADSwAwSAJBALK4BUxdDltRRE5/zXpVEVPUgunvscYFtEip3pmLlhrWpacX7y7GCMo2/JM6LeHmiiNdH1FWgGCpUfircSwlWKUCAwEAAQ==
+
+# table regex
+# 表订阅 白名单
+canal.instance.filter.regex=.*\\..*
+# table black regex
+# 表订阅 黑名单
+canal.instance.filter.black.regex=
+# table field filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)
+#canal.instance.filter.field=test1.t_product:id/subject/keywords,test2.t_company:id/name/contact/ch
+# table field black filter(format: schema1.tableName1:field1/field2,schema2.tableName2:field1/field2)
+#canal.instance.filter.black.field=test1.t_product:subject/product_image,test2.t_company:id/name/contact/ch
+
+# mq config
+canal.mq.topic=example
+# dynamic topic route by schema or table regex
+#canal.mq.dynamicTopic=mytest1.user,mytest2\\..*,.*\\..*
+canal.mq.partition=0
+# hash partition config
+#canal.mq.partitionsNum=3
+#canal.mq.partitionHash=test.table:id^name,.*\\..*
+#################################################

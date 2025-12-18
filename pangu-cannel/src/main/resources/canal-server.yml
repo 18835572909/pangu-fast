@@ -1,0 +1,17 @@
+canal:
+  server:
+    model: Direct
+    host: 127.0.0.1
+    port: 11111
+    destination: rocketmq-001
+    username: canal
+    password: canal
+    subscribe: db_0.*
+
+#    model: RocketMQ
+#    host: 127.0.0.1
+#    port: 11111
+#    destination: tcp-1
+#    username: canal
+#    password: canal
+#    subscribe: db_0.*

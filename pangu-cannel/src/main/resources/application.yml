@@ -1,0 +1,38 @@
+server:
+  port: 10000
+
+rocketmq:
+  # NameServer 地址
+  name-server: 192.168.1.2:9876
+  # 多个用分号分隔
+  # name-server: 127.0.0.1:9876;192.168.1.100:9876
+  producer:
+    group: canal_group_1
+    # 发送消息超时时间，默认3000ms
+    send-message-timeout: 10000
+    # 压缩消息阈值，默认4096字节
+    compress-message-body-threshold: 4096
+    # 同步模式失败重试次数
+    retry-times-when-send-failed: 3
+    # 异步模式失败重试次数
+    retry-times-when-send-async-failed: 3
+    # 最大消息大小，默认4MB
+    max-message-size: 4096
+    # VIP通道，减少端口占用
+    vip-channel-enabled: false
+    # 消息追踪开关
+    enable-msg-trace: true
+  consumer:
+    group: canal_group_1
+    # 消费模式：CLUSTERING（集群）或BROADCASTING（广播）
+    message-model: CLUSTERING
+    # 最小消费线程数
+    consume-thread-min: 5
+    # 最大消费线程数
+    consume-thread-max: 32
+    # 批量消费大小
+    consume-message-batch-max-size: 1
+    # 超时时间
+    consume-timeout: 15
+    # 顺序消费失败重试次数
+    max-reconsume-times: -1
