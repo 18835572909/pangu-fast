@@ -57,8 +57,8 @@ canal.mq.partition=0
 
 ### 2025.12.17
 1. 抽象转换器Converter 
-   2. 提供默认方式一： Mysql的Table字段不动，直接存储
-   3. 提供默认方式二： 多个Table复合查询to宽维度索引
+   - 提供默认方式一： Mysql的Table字段不动，直接存储
+   - 提供默认方式二： 多个Table复合查询to宽维度索引
 2. 整合Kafka
 3. 整合RabbitMq
 4. 封装新的starter根据配置，装载相关的转换
