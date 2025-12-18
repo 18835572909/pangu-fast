@@ -63,9 +63,23 @@ canal.mq.partition=0
 3. 整合RabbitMq
 4. 封装新的starter根据配置，装载相关的转换
 
-### 2025.12.30
-1. xxx
-2. xxx
+***
+
+# RocketMQ通用事务封装（捎带）
+
+## 版本
+- RocketMq: 5.2.0
+- SpringBoot: 2.7.18
+- JDK: 1.8
+
+## 总纲描述
+1. 提供通用事务监听器，利用业务类型，处理不同事务操作
+2. 常见场景支持--多RocketMQTemplate支持
+
+## 核心入口
+- ```com.hz.voa.canal.support.mqtx.GlobalMqTransactionListener```
+- ```com.hz.voa.canal.support.mqtx.MqTransactionHandler```
+
 
 
 

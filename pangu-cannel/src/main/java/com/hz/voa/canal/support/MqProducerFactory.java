@@ -2,6 +2,8 @@ package com.hz.voa.canal.support;
 
 import cn.hutool.core.exceptions.ExceptionUtil;
 import cn.hutool.core.util.IdUtil;
+import com.hz.voa.canal.support.mqtx.TxType;
+import com.hz.voa.canal.support.rmqtx.Ext1RocketMQTemplate;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.rocketmq.client.producer.SendCallback;
 import org.apache.rocketmq.client.producer.SendResult;
@@ -12,6 +14,7 @@ import org.springframework.messaging.Message;
 import org.springframework.messaging.support.MessageBuilder;
 import org.springframework.stereotype.Component;
 
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 
 /**
@@ -32,15 +35,7 @@ public class MqProducerFactory {
                 .build();
     }
 
-    private Message<String> buildTransactionMsg(String msgBody, String msgId, String txId, String bizId){
-        return MessageBuilder.withPayload(msgBody)
-                .setHeader(RocketMQHeaders.MESSAGE_ID, msgId)
-                .setHeader(RocketMQHeaders.TRANSACTION_ID, txId)
-                .setHeader(RocketMQHeaders.KEYS, bizId)
-                .build();
-    }
-
-    private String buildMsgId(){
+    public static String buildMsgId(){
         return IdUtil.getSnowflake().nextIdStr();
     }
 
@@ -104,9 +99,4 @@ public class MqProducerFactory {
         asyncSendDelay(topic, msgBody, 1000, MqDelayLevel.LEVEL_30M);
     }
 
-    public void sendTransactionMsg(String topic,String msgBody,String txId, String bizId){
-        String msgId = buildMsgId();
-        // arg: 扩展参数，本地方法传输，只能在当前线程链路使用，回查不能使用，不可以跨线程
-        rocketMQTemplate.sendMessageInTransaction(topic, buildTransactionMsg(msgBody, msgId, txId, bizId), null);
-    }
 }

@@ -7,9 +7,12 @@ import org.apache.rocketmq.spring.core.RocketMQListener;
 import org.slf4j.MDC;
 
 /**
- *
  * @author rhb
  * @date 2025/1/11 2:30
+ *
+ * RocketMQPushConsumerLifecycleListener  - 可以指明消费的起始位置
+ * RocketMQReplyListener - 消费并且回复消息
+ * RocketMQListener - 单向的消费消息。
 **/
 @Slf4j
 public abstract class DefaultMessageListener implements RocketMQListener<String> {
